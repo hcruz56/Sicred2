@@ -15,4 +15,6 @@ Neste caso optei por exportar o resultado da estrutura movimento_flat em csv, sa
 As maiores dificuldades que encontrei no desenvolvimento foi criar um ambiente virtual que simula um ambiente Hadoop, por isto optei por usar um
 ambiente já existente.
 
+Criei o planejamento de teste unitário em Excel para cobrir os fluxos porque não consegui instalar no Docker.
+
 Os scripts utilizados para criação das estruturas seguem salvos  no projeto.
