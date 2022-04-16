@@ -155,7 +155,7 @@ select * from cartao;
 select * from movimento;
 
 
-#Valido
+#Teste 
 Select a.nome as nome_associado, a.sobrenome as sobrenome_associado, a.idade as idade_associado,mo.vlr_transacao as vlr_transacao_movimento, 
 mo.des_transacao as des_transacao_movimento, mo.data_movimento as data_movimento,ct.num_cartao as numero_cartao, 
 ct.nom_impresso as nome_impresso_cartao,co.data_criacao as data_criacao_cartao,tp.descricao as tipo_conta,co.data_criacao as data_criacao_conta
@@ -174,5 +174,8 @@ and ct.id_conta=co.id
 inner join tipo_conta tp on tp.tipo=co.tipo
 inner join movimento as mo on mo.id_cartao = ct.id;
 
-select * from movimento_flat;
-
+SELECT * FROM movimento_flat
+INTO OUTFILE 'C:/Projetos/Sicred/movimento_flat.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY 'n';
