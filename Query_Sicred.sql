@@ -147,7 +147,6 @@ insert into movimento values (24,1800.00,'Compra Hotel','2021-12-31 12:00:01',16
 insert into movimento values (25,350.91,'Compra Rest]','2022-01-01 12:00:01',16);
 
 
-
 select * from associado;
 select * from associado;
 select * from conta;
@@ -179,3 +178,17 @@ INTO OUTFILE 'C:/Projetos/Sicred/movimento_flat.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY 'n';
+
+drop procedure Exportar_movimento_flat;
+
+delimiter //
+create procedure Exportar_movimento_flat ()
+begin
+	SELECT * FROM movimento_flat
+	INTO OUTFILE 'C:/Projetos/Sicred/movimento_flat.csv'
+	FIELDS TERMINATED BY ','
+	ENCLOSED BY '"'
+	LINES TERMINATED BY 'n';
+END//
+
+call Exportar_movimento_flat()
