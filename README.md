@@ -1,20 +1,13 @@
 # Sicred2
-Optei por uitilizar o MySQL porque foi o SGBD mais amigavel para instalar e criar as estruturas de banco, porém neste SGBD não foi possível 
-criar uma data type como foi solicitado no diagrama informado na tabela conta, campo tipo com data type tipo_conta. 
-Optei criando a tabela conta com o campo tipo com data type int e criando a tabela tipo_conta conforme abaixo:
+Optei por uitilizar o MySQL como SGBD para criar a estrutura do banco a ser ingerido porque tive problemas de instalação ao tentar usar o PostgreSQL.
+Neste SGBD não foi possível criar uma data type como foi solicitado no diagrama informado na tabela conta, campo tipo com data type tipo_conta. 
+Neste caso, optei por criar a tabela conta com o campo tipo com data type int e criar a tabela tipo_conta com a informação de cada tipo de conta para correlacionar as informações.
 
-create table if not exists tipo_conta
-(
-tipo  int,
-descricao varchar(20)
-);
+Se tivesse mais mais tempo para concluir o desafio faria todo processo automátizado, com execução de scripts automatizados, porém não foi possível porque tive que atuar depois do expediente, depois das 19hs e gastei dois dias vendo a melhor opção do SGBD, sendo que na quinta-feira dia 14/04/2022 consegui concluir toda estrutura e inserção dos dados.
+Como sexta-feira dia 15/04/2022 foi feriado aproveitei para atuar na validação dos dados e iniciar criação do ambiente virtual para Big Data.
 
-Se tivesse mais mais tempo para concluir o desafio iria criar todo ambiente virtual HDFS do Hadoop, mas não foi possível fazê-lo.
-Neste caso optei por exportar o resultado da estrutura movimento_flat em csv, salvar em ambiente hdfs já pronto e carregar em banco Hive.
+As maiores dificuldades que encontrei no desenvolvimento foi criar o ambiente virtual para simular o ambiente Hadoop, gastei dois dias para isso, pois não pude ficar full time.
 
-As maiores dificuldades que encontrei no desenvolvimento foi criar um ambiente virtual que simula um ambiente Hadoop, por isto optei por usar um
-ambiente já existente.
-
-Criei o planejamento de teste unitário em Excel para cobrir os fluxos porque não consegui instalar no Docker.
+Criei o planejamento de teste unitário em documento Word para cobrir os fluxos porque não tive tempo para instalar e configurar o Docker.
 
 Os scripts utilizados para criação das estruturas seguem salvos  no projeto.
