@@ -2,12 +2,6 @@ create database sicooperative;
 
 use sicooperative;
 
-drop table associado;
-drop table conta;
-drop table tipo_conta;
-drop table cartao;
-drop table movimento;
-
 create table if not exists associado
 (
 id int primary key,
@@ -75,13 +69,9 @@ insert into associado values(23,'Rodoldo ','dos Santos',43,'rodolfosantos43@gmai
 insert into associado values(24,'Rafael ','Fazio',47,'rfazio@hotmail.com');
 insert into associado values(25,'Humberto ','Almeida Cruz',55,'hcruu55@gmail.com');
 
-
-
-
 insert into tipo_conta values(1,'Individual');
 insert into tipo_conta values(2,'Conjunta');
 insert into tipo_conta values(3,'Solidária');
-
 
 insert into conta values (1,'1','2019-01-01 00:00:01',9);
 insert into conta values (2,'2','2019-01-28 00:00:01',9);
@@ -144,11 +134,10 @@ insert into movimento values (21,3208.91,'Compra Televisão','2022-04-08 19:00:0
 insert into movimento values (22,208.91,'Compra Resturante','2022-04-19 22:00:01',19);
 insert into movimento values (23,889.91,'Compra Hotel','2022-01-20 12:00:01',19);
 insert into movimento values (24,1800.00,'Compra Hotel','2021-12-31 12:00:01',16);
-insert into movimento values (25,350.91,'Compra Rest]','2022-01-01 12:00:01',16);
-
+insert into movimento values (25,350.91,'Compra Rest','2022-01-01 12:00:01',16);
 
 select * from associado;
-select * from associado;
+select * from tipo_conta;
 select * from conta;
 select * from cartao;
 select * from movimento;
@@ -176,19 +165,6 @@ inner join movimento as mo on mo.id_cartao = ct.id;
 SELECT * FROM movimento_flat
 INTO OUTFILE 'C:/Projetos/Sicred/movimento_flat.csv'
 FIELDS TERMINATED BY ','
-ENCLOSED BY '"'
-LINES TERMINATED BY 'n';
+ENCLOSED BY ''
+LINES TERMINATED BY '\n';
 
-drop procedure Exportar_movimento_flat;
-
-delimiter //
-create procedure Exportar_movimento_flat ()
-begin
-	SELECT * FROM movimento_flat
-	INTO OUTFILE 'C:/Projetos/Sicred/movimento_flat.csv'
-	FIELDS TERMINATED BY ','
-	ENCLOSED BY '"'
-	LINES TERMINATED BY 'n';
-END//
-
-call Exportar_movimento_flat()
