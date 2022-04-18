@@ -8,7 +8,7 @@ Optei também por utilizar o sqoop para realizar o ETL dos dados porque é a for
 Se tivesse mais mais tempo para concluir o desafio faria todo processo automátizado, com execução de scripts automatizados com passagem de parâmetros. 
 Porém não foi possível porque tive que atuar depois das 19hs e gastei dois dias vendo a melhor opção do SGBD, sendo que na quinta-feira dia 14/04/2022 consegui concluir toda estrutura e inserção dos dados.
 
-Como sexta-feira dia 15/04/2022 foi feriado aproveitei para atuar na validação dos dados e iniciar criação do ambiente virtual para Big Data.
+Como sexta-feira dia 15/04/2022 foi feriado, aproveitei para atuar na validação dos dados e iniciar criação do ambiente virtual para Big Data.
 
 As maiores dificuldades que encontrei no desenvolvimento foi criar o ambiente virtual para simular o ambiente Hadoop, gastei dois dias para isso, pois não pude ficar full time.
 
