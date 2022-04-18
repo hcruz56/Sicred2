@@ -15,3 +15,5 @@ As maiores dificuldades que encontrei no desenvolvimento foi criar o ambiente vi
 Criei o planejamento de teste unitário em documento Word para cobrir os fluxos porque não tive tempo para instalar e configurar o Docker.
 
 Os scripts utilizados para criação das estruturas seguem salvos no projeto, bem como o teste unitário em documento Word e os logs da execução do processo.
+
+Segue também o print das consultas no Hue mostrando a estrutra e conteudo da tabela movimento_flat no Hadoop.
