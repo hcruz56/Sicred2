@@ -1,0 +1,433 @@
+#Log de todo processo de Criação da estrutura do banco a ser ingerido, utilizando a tecnologia MySQL.
+#com uma massa de dados fictícia nas tabelas.
+
+
+#Criando ambiente do banco MySQL
+[cloudera@quickstart ~]$ pwd
+/home/cloudera
+[cloudera@quickstart ~]$ mkdir Sicred/
+[cloudera@quickstart ~]$ cd Sicred/
+[cloudera@quickstart Sicred]$ pwd
+/home/cloudera/Sicred
+[cloudera@quickstart Sicred]$ ll
+total 12
+-rw-rw-r-- 1 cloudera cloudera 9009 Apr 17 15:31 Query_Sicred.sql
+[cloudera@quickstart Sicred]$ mysql --user=root --password=cloudera
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.1.73 Source distribution
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> source Query_Sicred.sql;
+Query OK, 1 row affected (0.00 sec)
+
+Database changed
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+select * from associado;
++----+-------------------+--------------------+-------+------------------------------+
+| id | nome              | sobrenome          | idade | email                        |
++----+-------------------+--------------------+-------+------------------------------+
+|  1 | Francisco Antonio | Silva Cruz         |    40 | fransilva@gmail.com          |
+|  2 | Antonio Francisco | Silva Cruz         |    65 | antoniofran@gmail.com        |
+|  3 | Angelo Antonio    | Silva Cruz         |    28 | angeloant@gmail.com          |
+|  4 | Fernando Antonio  | Silva Cruz         |    30 | fsilva@gmail.com             |
+|  5 | Roberto Carlos    | Silva Cruz         |    44 | rcsilva@gmail.com            |
+|  6 | Bruno             | soares Cruz        |    42 | brunosoares@gmail.com        |
+|  7 | Susana            | Souza Cruz         |    22 | Suzana@gmail.com             |
+|  8 | Fernanda          | Lima de Oliveira   |    48 | Suzana@gmail.com             |
+|  9 | Jaqueline         | Correa             |    55 | Suzana@gmail.com             |
+| 10 | Margarida         | Almeida Pires      |    82 | Suzana@gmail.com             |
+| 11 | Michelle          | Fonseca de Barros  |    34 | mfonseca@hotmail.com         |
+| 12 | Anderson          | Vieira de Barros   |    43 | avbarros@hotmail.com         |
+| 13 | Alberto Roberto   | Fonseca de Barros  |    34 | albertofonseca1@hotmail.com  |
+| 14 | Alessandra        | Chaves de Oliveira |    43 | alechaves@hotmail.com        |
+| 15 | Priscilla         | de Barros          |    34 | pribarros@gmail.com          |
+| 16 | Rebeca            | Alencar            |    23 | rebecaalencar@hotmail.com    |
+| 17 | Ana Paula         | Oliveira de Souza  |    34 | anapaulasouza@hotmail        |
+| 18 | Andressa          | Vieira de Barros   |    43 | andressavbarros@gmail.com    |
+| 19 | Paulo Roberto     | Fagundes           |    34 | probertofagundes@hotmail.com |
+| 20 | Carlos Alberto    | Solano             |    43 | csol@gmail.com               |
+| 21 | Chritinne         | Barbosa            |    33 | chritinnebarbosa@hotmail.com |
+| 22 | Andre             | La Pasta de Souza  |    48 | alapasta@gmail.com           |
+| 23 | Rodoldo           | dos Santos         |    43 | rodolfosantos43@gmail.com    |
+| 24 | Rafael            | Fazio              |    47 | rfazio@hotmail.com           |
+| 25 | Humberto          | Almeida Cruz       |    55 | hcruu55@gmail.com            |
++----+-------------------+--------------------+-------+------------------------------+
+25 rows in set (0.00 sec)
+
+select * from tipo_conta;
++------+------------+
+| tipo | descricao  |
++------+------------+
+|    1 | Individual |
+|    2 | Conjunta   |
+|    3 | Solidária  |
++------+------------+
+3 rows in set (0.01 sec)
+
+select * from conta;
++----+------+---------------------+--------------+
+| id | tipo | data_criacao        | id_associado |
++----+------+---------------------+--------------+
+|  1 |    1 | 2019-01-01 00:00:01 |            9 |
+|  2 |    2 | 2019-01-28 00:00:01 |            9 |
+|  3 |    1 | 2018-12-01 00:00:01 |            8 |
+|  4 |    3 | 2022-01-18 00:00:01 |            9 |
+|  5 |    3 | 2016-01-28 00:00:01 |           12 |
+|  6 |    1 | 2021-10-01 00:00:01 |           11 |
+|  7 |    2 | 2016-08-28 00:00:01 |           11 |
+|  8 |    1 | 2019-01-01 00:00:01 |            1 |
+|  9 |    2 | 2019-01-28 00:00:01 |            7 |
+| 10 |    2 | 2022-01-18 00:00:01 |           24 |
+| 11 |    3 | 2022-01-18 00:00:01 |           18 |
+| 12 |    1 | 2022-01-18 00:00:01 |           22 |
+| 13 |    2 | 2022-01-18 00:00:01 |           22 |
+| 14 |    2 | 2022-01-18 00:00:01 |           25 |
+| 15 |    1 | 2022-01-18 00:00:01 |           20 |
++----+------+---------------------+--------------+
+15 rows in set (0.00 sec)
+select * from cartao;
++----+------------+-----------------------+----------+--------------+
+| id | num_cartao | nom_impresso          | id_conta | id_associado |
++----+------------+-----------------------+----------+--------------+
+|  1 |   11111111 | JAQUELINE CORREA      |        2 |            9 |
+|  2 |    4444444 | JAQUELINE CORREA      |        3 |            8 |
+|  3 |    8888888 | JAQUELINE CORREA      |        3 |            8 |
+|  4 |   22222222 | JAQUELINE CORREA      |        2 |            9 |
+|  5 |   12112118 | ANDERSON V BARROS     |        8 |           12 |
+|  6 |   99999999 | ANDERSON V BARROS     |        5 |           12 |
+|  7 |    3333333 | FERNANDA L OLIVEIRA   |        3 |            8 |
+|  8 |   21212118 | ANDERSON V BARROS     |        5 |           12 |
+|  9 |   17117171 | MICHELLE F BARROS     |        6 |           11 |
+| 10 |   77777777 | ANDERSON V BARROS     |        5 |           12 |
+| 11 |   37388558 | MICHELLE F BARROS     |        7 |           11 |
+| 12 |   21212121 | ANDERSON V BARROS     |        5 |           12 |
+| 13 |   47455888 | HUMBERTO A S CRUZ     |       14 |           25 |
+| 14 |   47455899 | ANDRE LA PASTA        |       12 |           22 |
+| 15 |   47455777 | CARLOS ALBERTO SOLANO |       15 |           20 |
+| 16 |   55466533 | RAFAEL FAZIO          |       10 |           24 |
+| 17 |   47455890 | ANDRESSA V BARROS     |       11 |           18 |
+| 18 |   48566888 | ANDRE LA PASTA        |       13 |           22 |
+| 19 |   36388558 | CARLOS ALBERTO SOLANO |       15 |           20 |
+| 20 |   21212121 | SUSANA SOUZA CRUZ     |        9 |            7 |
++----+------------+-----------------------+----------+--------------+
+20 rows in set (0.00 sec)
+select * from movimento;
++----+---------------+------------------------------+---------------------+-----------+
+| id | vlr_transacao | des_transacao                | data_movimento      | id_cartao |
++----+---------------+------------------------------+---------------------+-----------+
+|  1 |       2800.32 | Emprestimo Pessoal           | 2019-12-01 22:00:01 |         1 |
+|  2 |        850.88 | Compra Loja                  | 2019-12-01 23:00:01 |         4 |
+|  3 |       1550.00 | Emprestimo Pessoal           | 2021-05-01 09:30:01 |         7 |
+|  4 |       2800.32 | Compra Passagem Aerea        | 2019-12-01 22:00:01 |         7 |
+|  5 |      12800.00 | Emprestimo Pessoal           | 2019-05-01 22:00:01 |         4 |
+|  6 |        980.88 | Compra Loja Eletronico       | 2019-12-01 23:00:01 |         8 |
+|  7 |       1550.00 | Compra Mercado Livre         | 2021-05-01 09:30:01 |         8 |
+|  8 |        300.00 | Compra Mercado               | 2019-12-01 22:00:01 |        12 |
+|  9 |       2000.00 | Emprestimo Pessoal           | 2019-05-24 22:00:01 |        12 |
+| 10 |        480.88 | Compra Veterinaria           | 2019-12-01 23:00:01 |        10 |
+| 11 |      12000.00 | Emprestimo Pessoal           | 2019-05-24 22:00:01 |        11 |
+| 12 |       1980.81 | Compra Supermercado          | 2019-12-01 23:00:01 |         9 |
+| 13 |       1300.00 | Compra Autopecas             | 2021-12-12 13:00:01 |        20 |
+| 14 |        483.25 | Compra Supermercado          | 2019-12-12 21:00:01 |        20 |
+| 15 |       2550.81 | Compra Passagem Aerea        | 2022-04-01 23:00:01 |        20 |
+| 16 |        343.81 | Compra Posto Combustivel     | 2021-05-12 23:00:01 |        20 |
+| 17 |        128.88 | Compra Posto Combustivel     | 2021-05-19 12:35:22 |        13 |
+| 18 |        345.00 | Compra Resturante            | 2021-05-19 23:00:01 |        13 |
+| 19 |        208.91 | Compra Loja Esportiva        | 2021-05-20 23:00:01 |        13 |
+| 20 |       1208.91 | Compra Material Informática  | 2022-04-12 14:00:01 |        18 |
+| 21 |       3208.91 | Compra Televisão             | 2022-04-08 19:00:01 |        19 |
+| 22 |        208.91 | Compra Resturante            | 2022-04-19 22:00:01 |        19 |
+| 23 |        889.91 | Compra Hotel                 | 2022-01-20 12:00:01 |        19 |
+| 24 |       1800.00 | Compra Hotel                 | 2021-12-31 12:00:01 |        16 |
+| 25 |        350.91 | Compra Rest]                 | 2022-01-01 12:00:01 |        16 |
++----+---------------+------------------------------+---------------------+-----------+
+25 rows in set (0.00 sec)
+select * FROM movimento_flat
++-----------------+---------------------+-----------------+-------------------------+------------------------------+---------------------+---------------+-----------------------+---------------------+------------+---------------------+
+| nome_associado  | sobrenome_associado | idade_associado | vlr_transacao_movimento | des_transacao_movimento      | data_movimento      | numero_cartao | nome_impresso_cartao  | data_criacao_cartao | tipo_conta | data_criacao_conta  |
++-----------------+---------------------+-----------------+-------------------------+------------------------------+---------------------+---------------+-----------------------+---------------------+------------+---------------------+
+| Jaqueline       | Correa              |              55 |                 2800.32 | Emprestimo Pessoal           | 2019-12-01 22:00:01 |      11111111 | JAQUELINE CORREA      | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Jaqueline       | Correa              |              55 |                  850.88 | Compra Loja                  | 2019-12-01 23:00:01 |      22222222 | JAQUELINE CORREA      | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Fernanda        | Lima de Oliveira    |              48 |                 1550.00 | Emprestimo Pessoal           | 2021-05-01 09:30:01 |       3333333 | FERNANDA L OLIVEIRA   | 2018-12-01 00:00:01 | Individual | 2018-12-01 00:00:01 |
+| Fernanda        | Lima de Oliveira    |              48 |                 2800.32 | Compra Passagem Aerea        | 2019-12-01 22:00:01 |       3333333 | FERNANDA L OLIVEIRA   | 2018-12-01 00:00:01 | Individual | 2018-12-01 00:00:01 |
+| Jaqueline       | Correa              |              55 |                12800.00 | Emprestimo Pessoal           | 2019-05-01 22:00:01 |      22222222 | JAQUELINE CORREA      | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Anderson        | Vieira de Barros    |              43 |                  980.88 | Compra Loja Eletronico       | 2019-12-01 23:00:01 |      21212118 | ANDERSON V BARROS     | 2016-01-28 00:00:01 | Solidária  | 2016-01-28 00:00:01 |
+| Anderson        | Vieira de Barros    |              43 |                 1550.00 | Compra Mercado Livre         | 2021-05-01 09:30:01 |      21212118 | ANDERSON V BARROS     | 2016-01-28 00:00:01 | Solidária  | 2016-01-28 00:00:01 |
+| Anderson        | Vieira de Barros    |              43 |                  300.00 | Compra Mercado               | 2019-12-01 22:00:01 |      21212121 | ANDERSON V BARROS     | 2016-01-28 00:00:01 | Solidária  | 2016-01-28 00:00:01 |
+| Anderson        | Vieira de Barros    |              43 |                 2000.00 | Emprestimo Pessoal           | 2019-05-24 22:00:01 |      21212121 | ANDERSON V BARROS     | 2016-01-28 00:00:01 | Solidária  | 2016-01-28 00:00:01 |
+| Anderson        | Vieira de Barros    |              43 |                  480.88 | Compra Veterinaria           | 2019-12-01 23:00:01 |      77777777 | ANDERSON V BARROS     | 2016-01-28 00:00:01 | Solidária  | 2016-01-28 00:00:01 |
+| Michelle        | Fonseca de Barros   |              34 |                12000.00 | Emprestimo Pessoal           | 2019-05-24 22:00:01 |      37388558 | MICHELLE F BARROS     | 2016-08-28 00:00:01 | Conjunta   | 2016-08-28 00:00:01 |
+| Michelle        | Fonseca de Barros   |              34 |                 1980.81 | Compra Supermercado          | 2019-12-01 23:00:01 |      17117171 | MICHELLE F BARROS     | 2021-10-01 00:00:01 | Individual | 2021-10-01 00:00:01 |
+| Susana          | Souza Cruz          |              22 |                 1300.00 | Compra Autopecas             | 2021-12-12 13:00:01 |      21212121 | SUSANA SOUZA CRUZ     | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Susana          | Souza Cruz          |              22 |                  483.25 | Compra Supermercado          | 2019-12-12 21:00:01 |      21212121 | SUSANA SOUZA CRUZ     | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Susana          | Souza Cruz          |              22 |                 2550.81 | Compra Passagem Aerea        | 2022-04-01 23:00:01 |      21212121 | SUSANA SOUZA CRUZ     | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Susana          | Souza Cruz          |              22 |                  343.81 | Compra Posto Combustivel     | 2021-05-12 23:00:01 |      21212121 | SUSANA SOUZA CRUZ     | 2019-01-28 00:00:01 | Conjunta   | 2019-01-28 00:00:01 |
+| Humberto        | Almeida Cruz        |              55 |                  128.88 | Compra Posto Combustivel     | 2021-05-19 12:35:22 |      47455888 | HUMBERTO A S CRUZ     | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
+| Humberto        | Almeida Cruz        |              55 |                  345.00 | Compra Resturante            | 2021-05-19 23:00:01 |      47455888 | HUMBERTO A S CRUZ     | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
+| Humberto        | Almeida Cruz        |              55 |                  208.91 | Compra Loja Esportiva        | 2021-05-20 23:00:01 |      47455888 | HUMBERTO A S CRUZ     | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
+| Andre           | La Pasta de Souza   |              48 |                 1208.91 | Compra Material Informática  | 2022-04-12 14:00:01 |      48566888 | ANDRE LA PASTA        | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
+| Carlos Alberto  | Solano              |              43 |                 3208.91 | Compra Televisão             | 2022-04-08 19:00:01 |      36388558 | CARLOS ALBERTO SOLANO | 2022-01-18 00:00:01 | Individual | 2022-01-18 00:00:01 |
+| Carlos Alberto  | Solano              |              43 |                  208.91 | Compra Resturante            | 2022-04-19 22:00:01 |      36388558 | CARLOS ALBERTO SOLANO | 2022-01-18 00:00:01 | Individual | 2022-01-18 00:00:01 |
+| Carlos Alberto  | Solano              |              43 |                  889.91 | Compra Hotel                 | 2022-01-20 12:00:01 |      36388558 | CARLOS ALBERTO SOLANO | 2022-01-18 00:00:01 | Individual | 2022-01-18 00:00:01 |
+| Rafael          | Fazio               |              47 |                 1800.00 | Compra Hotel                 | 2021-12-31 12:00:01 |      55466533 | RAFAEL FAZIO          | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
+| Rafael          | Fazio               |              47 |                  350.91 | Compra Rest]                 | 2022-01-01 12:00:01 |      55466533 | RAFAEL FAZIO          | 2022-01-18 00:00:01 | Conjunta   | 2022-01-18 00:00:01 |
++-----------------+---------------------+-----------------+-------------------------+------------------------------+---------------------+---------------+-----------------------+---------------------+------------+---------------------+
+25 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 25 rows affected (0.00 sec)
+
+mysql> SELECT * FROM movimento_flat
+    -> INTO OUTFILE '/home/cloudera/Sicred/movimento_flat.csv'
+    -> FIELDS TERMINATED BY ','
+    -> ENCLOSED BY '"'
+    -> LINES TERMINATED BY 'n';
+Query OK, 25 rows affected (0.01 sec)
+
+mysql> select count(*) from movimento_flat;
++----------+
+| count(*) |
++----------+
+|       25 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| cm                 |
+| firehose           |
+| hue                |
+| metastore          |
+| mysql              |
+| nav                |
+| navms              |
+| oozie              |
+| retail_db          |
+| rman               |
+| sentry             |
+| sicooperative      |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------------+
+| Tables_in_sicooperative |
++-------------------------+
+| associado               |
+| cartao                  |
+| conta                   |
+| movimento               |
+| movimento_flat          |
+| tipo_conta              |
++-------------------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+mysql> exit
+Bye
+[cloudera@quickstart Sicred]$ pwd
+/home/cloudera/Sicred
+[cloudera@quickstart Sicred]$ ll
+total 36
+-rw-rw-r-- 1 cloudera cloudera 19420 Apr 17 15:52 Log_Teste_Mysql_Sicred.log
+-rw-rw-rw- 1 mysql    mysql     3731 Apr 17 15:59 movimento_flat.csv
+-rw-rw-r-- 1 cloudera cloudera  9032 Apr 17 15:59 Query_Sicred.sql
+[cloudera@quickstart Sicred]$ 

@@ -1,0 +1,751 @@
+#Log do processo no Hive usando linha de comando beeline
+[cloudera@quickstart ~]$ beeline
+Beeline version 1.1.0-cdh5.13.0 by Apache Hive
+beeline> !connect jdbc:hive2://
+scan complete in 36ms
+Connecting to jdbc:hive2://
+Enter username for jdbc:hive2://: 
+Enter password for jdbc:hive2://: 
+Connected to: Apache Hive (version 1.1.0-cdh5.13.0)
+Driver: Hive JDBC (version 1.1.0-cdh5.13.0)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://> set hive.execution.engine;
++---------------------------+--+
+|            set            |
++---------------------------+--+
+| hive.execution.engine=mr  |
++---------------------------+--+
+1 row selected (1.051 seconds)
+0: jdbc:hive2://> set hive.execution.engine=spark;
+No rows affected (0.011 seconds)
+0: jdbc:hive2://> set hive.execution.engine;
++------------------------------+--+
+|             set              |
++------------------------------+--+
+| hive.execution.engine=spark  |
++------------------------------+--+
+1 row selected (0.015 seconds)
+#Criação do banco no Hive
+0: jdbc:hive2://> create database sicooperative;
+OK
+No rows affected (13.102 seconds)
+0: jdbc:hive2://> use sicooperative;
+OK
+No rows affected (0.334 seconds)
+0: jdbc:hive2://> show tables;
+OK
++-----------+--+
+| tab_name  |
++-----------+--+
++-----------+--+
+No rows selected (2.427 seconds)
+0: jdbc:hive2://> show databases;
+OK
++----------------+--+
+| database_name  |
++----------------+--+
+| default        |
+| sicooperative  |
++----------------+--+
+2 rows selected (1.058 seconds)
+0: jdbc:hive2://> show tables;
+OK
++-----------+--+
+| tab_name  |
++-----------+--+
++-----------+--+
+No rows selected (0.361 seconds)
+#Tabela depois de ter executado o comando Sqoop
+0: jdbc:hive2://> show tables;
+OK
++-----------------+--+
+|    tab_name     |
++-----------------+--+
+| movimento_flat  |
++-----------------+--+
+1 row selected (0.324 seconds)
+0: jdbc:hive2://> select * from movimento_flat;
+OK
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+| movimento_flat.nome_associado  | movimento_flat.sobrenome_associado  | movimento_flat.idade_associado  | movimento_flat.vlr_transacao_movimento  | movimento_flat.des_transacao_movimento  | movimento_flat.data_movimento  | movimento_flat.numero_cartao  | movimento_flat.nome_impresso_cartao  | movimento_flat.data_criacao_cartao  | movimento_flat.tipo_conta  | movimento_flat.data_criacao_conta  |
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+| Jaqueline                      | Correa                              | 55                              | 2800.32                                 | Emprestimo Pessoal                      | 2019-12-01 22:00:01.0          | 11111111                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Jaqueline                      | Correa                              | 55                              | 850.88                                  | Compra Loja                             | 2019-12-01 23:00:01.0          | 22222222                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Fernanda                       | Lima de Oliveira                    | 48                              | 1550.0                                  | Emprestimo Pessoal                      | 2021-05-01 09:30:01.0          | 3333333                       | FERNANDA L OLIVEIRA                  | 2018-12-01 00:00:01.0               | Individual                 | 2018-12-01 00:00:01.0              |
+| Fernanda                       | Lima de Oliveira                    | 48                              | 2800.32                                 | Compra Passagem Aerea                   | 2019-12-01 22:00:01.0          | 3333333                       | FERNANDA L OLIVEIRA                  | 2018-12-01 00:00:01.0               | Individual                 | 2018-12-01 00:00:01.0              |
+| Jaqueline                      | Correa                              | 55                              | 12800.0                                 | Emprestimo Pessoal                      | 2019-05-01 22:00:01.0          | 22222222                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 980.88                                  | Compra Loja Eletronico                  | 2019-12-01 23:00:01.0          | 21212118                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 1550.0                                  | Compra Mercado Livre                    | 2021-05-01 09:30:01.0          | 21212118                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 300.0                                   | Compra Mercado                          | 2019-12-01 22:00:01.0          | 21212121                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 2000.0                                  | Emprestimo Pessoal                      | 2019-05-24 22:00:01.0          | 21212121                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 480.88                                  | Compra Veterinaria                      | 2019-12-01 23:00:01.0          | 77777777                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Michelle                       | Fonseca de Barros                   | 34                              | 12000.0                                 | Emprestimo Pessoal                      | 2019-05-24 22:00:01.0          | 37388558                      | MICHELLE F BARROS                    | 2016-08-28 00:00:01.0               | Conjunta                   | 2016-08-28 00:00:01.0              |
+| Michelle                       | Fonseca de Barros                   | 34                              | 1980.81                                 | Compra Supermercado                     | 2019-12-01 23:00:01.0          | 17117171                      | MICHELLE F BARROS                    | 2021-10-01 00:00:01.0               | Individual                 | 2021-10-01 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 1300.0                                  | Compra Autopecas                        | 2021-12-12 13:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 483.25                                  | Compra Supermercado                     | 2019-12-12 21:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 2550.81                                 | Compra Passagem Aerea                   | 2022-04-01 23:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 343.81                                  | Compra Posto Combustivel                | 2021-05-12 23:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 128.88                                  | Compra Posto Combustivel                | 2021-05-19 12:35:22.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 345.0                                   | Compra Resturante                       | 2021-05-19 23:00:01.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 208.91                                  | Compra Loja Esportiva                   | 2021-05-20 23:00:01.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Andre                          | La Pasta de Souza                   | 48                              | 1208.91                                 | Compra Material Informática             | 2022-04-12 14:00:01.0          | 48566888                      | ANDRE LA PASTA                       | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 3208.91                                 | Compra Televisão                        | 2022-04-08 19:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 208.91                                  | Compra Resturante                       | 2022-04-19 22:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 889.91                                  | Compra Hotel                            | 2022-01-20 12:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Rafael                         | Fazio                               | 47                              | 1800.0                                  | Compra Hotel                            | 2021-12-31 12:00:01.0          | 55466533                      | RAFAEL FAZIO                         | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Rafael                         | Fazio                               | 47                              | 350.91                                  | Compra Rest]                            | 2022-01-01 12:00:01.0          | 55466533                      | RAFAEL FAZIO                         | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+25 rows selected (6.533 seconds)
+0: jdbc:hive2://> select count(*) from movimento_flat;
+Query ID = cloudera_20220417182424_de3104e4-3ee8-4494-b268-ce5385d7a9f6
+Total jobs = 1
+Launching Job 1 out of 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR client.SparkClientImpl: Timed out waiting for client to connect.
+Possible reasons include network issues, errors in remote driver or the cluster has no available resources, etc.
+Please check YARN or Spark driver's logs for further information.
+java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR exec.Task: Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR exec.Task: Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR ql.Driver: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+22/04/17 18:26:07 [HiveServer2-Background-Pool: Thread-57]: ERROR operation.Operation: Error running hive query: 
+org.apache.hive.service.cli.HiveSQLException: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+	at org.apache.hive.service.cli.operation.Operation.toSQLException(Operation.java:400)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:238)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+ERROR : Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+
+ERROR : Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask (state=08S01,code=1)
+0: jdbc:hive2://> 22/04/17 18:26:36 [RPC-Handler-3]: WARN channel.DefaultChannelPipeline: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.lang.IllegalArgumentException: Unexpected client ID '617a8fa7-b0ef-4485-b945-a2497408a610' in SASL handshake.
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:119)
+	at org.apache.hive.spark.client.rpc.RpcServer$SaslServerHandler.update(RpcServer.java:285)
+	at org.apache.hive.spark.client.rpc.SaslHandler.channelRead0(SaslHandler.java:59)
+	at org.apache.hive.spark.client.rpc.SaslHandler.channelRead0(SaslHandler.java:34)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:105)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:308)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:294)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:244)
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:308)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:294)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:846)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:131)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:511)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+
+[cloudera@quickstart ~]$ beeline
+Beeline version 1.1.0-cdh5.13.0 by Apache Hive
+beeline> !connect jdbc:hive2://
+scan complete in 36ms
+Connecting to jdbc:hive2://
+Enter username for jdbc:hive2://: 
+Enter password for jdbc:hive2://: 
+Connected to: Apache Hive (version 1.1.0-cdh5.13.0)
+Driver: Hive JDBC (version 1.1.0-cdh5.13.0)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://> set hive.execution.engine;
++---------------------------+--+
+|            set            |
++---------------------------+--+
+| hive.execution.engine=mr  |
++---------------------------+--+
+1 row selected (1.051 seconds)
+0: jdbc:hive2://> set hive.execution.engine=spark;
+No rows affected (0.011 seconds)
+0: jdbc:hive2://> set hive.execution.engine;
++------------------------------+--+
+|             set              |
++------------------------------+--+
+| hive.execution.engine=spark  |
++------------------------------+--+
+1 row selected (0.015 seconds)
+0: jdbc:hive2://> create database sicooperative;
+OK
+No rows affected (13.102 seconds)
+0: jdbc:hive2://> use sicooperative;
+OK
+No rows affected (0.334 seconds)
+0: jdbc:hive2://> show tables;
+OK
++-----------+--+
+| tab_name  |
++-----------+--+
++-----------+--+
+No rows selected (2.427 seconds)
+0: jdbc:hive2://> show databases;
+OK
++----------------+--+
+| database_name  |
++----------------+--+
+| default        |
+| sicooperative  |
++----------------+--+
+2 rows selected (1.058 seconds)
+0: jdbc:hive2://> show tables;
+OK
++-----------+--+
+| tab_name  |
++-----------+--+
++-----------+--+
+No rows selected (0.361 seconds)
+0: jdbc:hive2://> show tables;
+OK
++-----------------+--+
+|    tab_name     |
++-----------------+--+
+| movimento_flat  |
++-----------------+--+
+1 row selected (0.324 seconds)
+0: jdbc:hive2://> select * from movimento_flat;
+OK
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+| movimento_flat.nome_associado  | movimento_flat.sobrenome_associado  | movimento_flat.idade_associado  | movimento_flat.vlr_transacao_movimento  | movimento_flat.des_transacao_movimento  | movimento_flat.data_movimento  | movimento_flat.numero_cartao  | movimento_flat.nome_impresso_cartao  | movimento_flat.data_criacao_cartao  | movimento_flat.tipo_conta  | movimento_flat.data_criacao_conta  |
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+| Jaqueline                      | Correa                              | 55                              | 2800.32                                 | Emprestimo Pessoal                      | 2019-12-01 22:00:01.0          | 11111111                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Jaqueline                      | Correa                              | 55                              | 850.88                                  | Compra Loja                             | 2019-12-01 23:00:01.0          | 22222222                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Fernanda                       | Lima de Oliveira                    | 48                              | 1550.0                                  | Emprestimo Pessoal                      | 2021-05-01 09:30:01.0          | 3333333                       | FERNANDA L OLIVEIRA                  | 2018-12-01 00:00:01.0               | Individual                 | 2018-12-01 00:00:01.0              |
+| Fernanda                       | Lima de Oliveira                    | 48                              | 2800.32                                 | Compra Passagem Aerea                   | 2019-12-01 22:00:01.0          | 3333333                       | FERNANDA L OLIVEIRA                  | 2018-12-01 00:00:01.0               | Individual                 | 2018-12-01 00:00:01.0              |
+| Jaqueline                      | Correa                              | 55                              | 12800.0                                 | Emprestimo Pessoal                      | 2019-05-01 22:00:01.0          | 22222222                      | JAQUELINE CORREA                     | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 980.88                                  | Compra Loja Eletronico                  | 2019-12-01 23:00:01.0          | 21212118                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 1550.0                                  | Compra Mercado Livre                    | 2021-05-01 09:30:01.0          | 21212118                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 300.0                                   | Compra Mercado                          | 2019-12-01 22:00:01.0          | 21212121                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 2000.0                                  | Emprestimo Pessoal                      | 2019-05-24 22:00:01.0          | 21212121                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Anderson                       | Vieira de Barros                    | 43                              | 480.88                                  | Compra Veterinaria                      | 2019-12-01 23:00:01.0          | 77777777                      | ANDERSON V BARROS                    | 2016-01-28 00:00:01.0               | Solidária                  | 2016-01-28 00:00:01.0              |
+| Michelle                       | Fonseca de Barros                   | 34                              | 12000.0                                 | Emprestimo Pessoal                      | 2019-05-24 22:00:01.0          | 37388558                      | MICHELLE F BARROS                    | 2016-08-28 00:00:01.0               | Conjunta                   | 2016-08-28 00:00:01.0              |
+| Michelle                       | Fonseca de Barros                   | 34                              | 1980.81                                 | Compra Supermercado                     | 2019-12-01 23:00:01.0          | 17117171                      | MICHELLE F BARROS                    | 2021-10-01 00:00:01.0               | Individual                 | 2021-10-01 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 1300.0                                  | Compra Autopecas                        | 2021-12-12 13:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 483.25                                  | Compra Supermercado                     | 2019-12-12 21:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 2550.81                                 | Compra Passagem Aerea                   | 2022-04-01 23:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Susana                         | Souza Cruz                          | 22                              | 343.81                                  | Compra Posto Combustivel                | 2021-05-12 23:00:01.0          | 21212121                      | SUSANA SOUZA CRUZ                    | 2019-01-28 00:00:01.0               | Conjunta                   | 2019-01-28 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 128.88                                  | Compra Posto Combustivel                | 2021-05-19 12:35:22.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 345.0                                   | Compra Resturante                       | 2021-05-19 23:00:01.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Humberto                       | Almeida Cruz                        | 55                              | 208.91                                  | Compra Loja Esportiva                   | 2021-05-20 23:00:01.0          | 47455888                      | HUMBERTO A S CRUZ                    | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Andre                          | La Pasta de Souza                   | 48                              | 1208.91                                 | Compra Material Informática             | 2022-04-12 14:00:01.0          | 48566888                      | ANDRE LA PASTA                       | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 3208.91                                 | Compra Televisão                        | 2022-04-08 19:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 208.91                                  | Compra Resturante                       | 2022-04-19 22:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Carlos Alberto                 | Solano                              | 43                              | 889.91                                  | Compra Hotel                            | 2022-01-20 12:00:01.0          | 36388558                      | CARLOS ALBERTO SOLANO                | 2022-01-18 00:00:01.0               | Individual                 | 2022-01-18 00:00:01.0              |
+| Rafael                         | Fazio                               | 47                              | 1800.0                                  | Compra Hotel                            | 2021-12-31 12:00:01.0          | 55466533                      | RAFAEL FAZIO                         | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
+| Rafael                         | Fazio                               | 47                              | 350.91                                  | Compra Rest]                            | 2022-01-01 12:00:01.0          | 55466533                      | RAFAEL FAZIO                         | 2022-01-18 00:00:01.0               | Conjunta                   | 2022-01-18 00:00:01.0              |
++--------------------------------+-------------------------------------+---------------------------------+-----------------------------------------+-----------------------------------------+--------------------------------+-------------------------------+--------------------------------------+-------------------------------------+----------------------------+------------------------------------+--+
+25 rows selected (6.533 seconds)
+0: jdbc:hive2://> select count(*) from movimento_flat;
+Query ID = cloudera_20220417182424_de3104e4-3ee8-4494-b268-ce5385d7a9f6
+Total jobs = 1
+Launching Job 1 out of 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR client.SparkClientImpl: Timed out waiting for client to connect.
+Possible reasons include network issues, errors in remote driver or the cluster has no available resources, etc.
+Please check YARN or Spark driver's logs for further information.
+java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR exec.Task: Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR exec.Task: Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+22/04/17 18:26:06 [HiveServer2-Background-Pool: Thread-57]: ERROR ql.Driver: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+22/04/17 18:26:07 [HiveServer2-Background-Pool: Thread-57]: ERROR operation.Operation: Error running hive query: 
+org.apache.hive.service.cli.HiveSQLException: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+	at org.apache.hive.service.cli.operation.Operation.toSQLException(Operation.java:400)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:238)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+ERROR : Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+
+ERROR : Failed to execute spark task, with exception 'org.apache.hadoop.hive.ql.metadata.HiveException(Failed to create spark client.)'
+org.apache.hadoop.hive.ql.metadata.HiveException: Failed to create spark client.
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:64)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionManagerImpl.getSession(SparkSessionManagerImpl.java:114)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkUtilities.getSparkSession(SparkUtilities.java:124)
+	at org.apache.hadoop.hive.ql.exec.spark.SparkTask.execute(SparkTask.java:101)
+	at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:214)
+	at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:99)
+	at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:2052)
+	at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1748)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1501)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1285)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1280)
+	at org.apache.hive.service.cli.operation.SQLOperation.runQuery(SQLOperation.java:236)
+	at org.apache.hive.service.cli.operation.SQLOperation.access$300(SQLOperation.java:89)
+	at org.apache.hive.service.cli.operation.SQLOperation$3$1.run(SQLOperation.java:301)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:415)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1917)
+	at org.apache.hive.service.cli.operation.SQLOperation$3.run(SQLOperation.java:314)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at com.google.common.base.Throwables.propagate(Throwables.java:160)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:124)
+	at org.apache.hive.spark.client.SparkClientFactory.createClient(SparkClientFactory.java:85)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.createRemoteClient(RemoteHiveSparkClient.java:101)
+	at org.apache.hadoop.hive.ql.exec.spark.RemoteHiveSparkClient.<init>(RemoteHiveSparkClient.java:97)
+	at org.apache.hadoop.hive.ql.exec.spark.HiveSparkClientFactory.createHiveSparkClient(HiveSparkClientFactory.java:69)
+	at org.apache.hadoop.hive.ql.exec.spark.session.SparkSessionImpl.open(SparkSessionImpl.java:62)
+	... 22 more
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at io.netty.util.concurrent.AbstractFuture.get(AbstractFuture.java:37)
+	at org.apache.hive.spark.client.SparkClientImpl.<init>(SparkClientImpl.java:108)
+	... 27 more
+Caused by: java.util.concurrent.TimeoutException: Timed out waiting for client connection.
+	at org.apache.hive.spark.client.rpc.RpcServer$2.run(RpcServer.java:173)
+	at io.netty.util.concurrent.PromiseTask$RunnableAdapter.call(PromiseTask.java:38)
+	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:120)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:357)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:357)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	... 1 more
+ERROR : FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask
+Error: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.spark.SparkTask (state=08S01,code=1)
+0: jdbc:hive2://> 22/04/17 18:26:36 [RPC-Handler-3]: WARN channel.DefaultChannelPipeline: An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.lang.IllegalArgumentException: Unexpected client ID '617a8fa7-b0ef-4485-b945-a2497408a610' in SASL handshake.
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:119)
+	at org.apache.hive.spark.client.rpc.RpcServer$SaslServerHandler.update(RpcServer.java:285)
+	at org.apache.hive.spark.client.rpc.SaslHandler.channelRead0(SaslHandler.java:59)
+	at org.apache.hive.spark.client.rpc.SaslHandler.channelRead0(SaslHandler.java:34)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:105)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:308)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:294)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:244)
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:308)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:294)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:846)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:131)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:511)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:468)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:382)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:354)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+
