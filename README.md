@@ -1,6 +1,6 @@
 # Sicred2
 Optei por uitilizar o MySQL como SGBD para criar a estrutura do banco a ser ingerido porque tive problemas de instalação ao tentar usar o PostgreSQL.
-Neste SGBD não foi possível criar um data type tipo_conta, como foi solicitado no diagrama informado na tabela conta.
+Neste SGBD não foi possível criar um data type tipo_conta como foi solicitado no diagrama informado na tabela conta.
 Neste caso, optei por criar a tabela conta com o campo tipo com data type int e criar a tabela tipo_conta com a informação de cada tipo de conta para correlacionar as informações.
 
 Se tivesse mais mais tempo para concluir o desafio faria todo processo automátizado, com execução de scripts automatizados, porém não foi possível porque tive que atuar depois do expediente, depois das 19hs e gastei dois dias vendo a melhor opção do SGBD, sendo que na quinta-feira dia 14/04/2022 consegui concluir toda estrutura e inserção dos dados.
